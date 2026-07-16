@@ -22,6 +22,7 @@ public class Main {
         var opcao = -1;
         while (opcao != 0) {
             var menu = """
+                    
                     ===== Screen Match V2 =====
                     
                     1 - Buscar séries
