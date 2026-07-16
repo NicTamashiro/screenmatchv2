@@ -2,12 +2,15 @@ package br.com.nicolas.screenmatchv2.principal;
 
 import br.com.nicolas.screenmatchv2.model.DadosSerie;
 import br.com.nicolas.screenmatchv2.model.DadosTemporada;
+import br.com.nicolas.screenmatchv2.model.Serie;
 import br.com.nicolas.screenmatchv2.service.ConsumoApi;
 import br.com.nicolas.screenmatchv2.service.ConverteDados;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -81,6 +84,13 @@ public class Main {
     }
 
     private void listarSeriesBuscadas(){
-        dadosSeries.forEach(System.out::println);
+        List<Serie> series = new ArrayList<>();
+        series = dadosSeries.stream()
+                .map(Serie::new)
+                .collect(Collectors.toList());
+
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
 }
