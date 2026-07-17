@@ -84,8 +84,7 @@ public class Main {
     }
 
     private void listarSeriesBuscadas(){
-        List<Serie> series = new ArrayList<>();
-        series = dadosSeries.stream()
+        List<Serie> series = dadosSeries.stream()
                 .map(Serie::new)
                 .collect(Collectors.toList());
 
