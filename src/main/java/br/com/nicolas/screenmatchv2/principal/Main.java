@@ -3,9 +3,12 @@ package br.com.nicolas.screenmatchv2.principal;
 import br.com.nicolas.screenmatchv2.model.DadosSerie;
 import br.com.nicolas.screenmatchv2.model.DadosTemporada;
 import br.com.nicolas.screenmatchv2.model.Serie;
+import br.com.nicolas.screenmatchv2.repository.SerieRepository;
 import br.com.nicolas.screenmatchv2.service.ConsumoApi;
 import br.com.nicolas.screenmatchv2.service.ConverteDados;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -20,6 +23,11 @@ public class Main {
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=6585022c";
     private List<DadosSerie> dadosSeries = new ArrayList<>();
+    private SerieRepository repositorio;
+
+    public Main(SerieRepository repositorio){
+        this.repositorio = repositorio;
+    }
 
     public void exibeMenu(){
         var opcao = -1;
@@ -67,7 +75,9 @@ public class Main {
 
     private void buscarSerieWeb(){
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+//      dadosSeries.add(dados);
+        repositorio.save(serie);
         System.out.println(dados);
     }
 
