@@ -31,6 +31,14 @@ public class Serie {
         this.sinopse = ConsultaGrok.obterTraducao(dadosSerie.sinopse().trim());
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
